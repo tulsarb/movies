@@ -1,3 +1,7 @@
+<%= form_tag movies_path, method: :get do %>
+  <%= text_field_tag 'movie[query]' %>
+  <%= submit_tag :search %>
+<% end %>
 
 <% @movies.each do  |movie| %>
   <p><%= movie['title'] %></p>

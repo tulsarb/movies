@@ -2,7 +2,7 @@ class Movie
   include ActiveModel::Model
 
   def self.search(options = {})
-    options.fetch(:query, errors.add(:query, 'Search Params Required'))
+    options.fetch(:query)
     MovieApi.new.search(options)['results']
   end
 
