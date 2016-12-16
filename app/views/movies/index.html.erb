@@ -5,13 +5,16 @@
 <% if !(@page - 1).zero? %>
   <%= link_to("Previous", movies_path(params: {query: @query, page: @page - 1})) %>
 <% end %>
-(<%= @page || 1 %>)
+<%= form_tag movies_path, method: :get do %>
+  <%= hidden_field_tag :query, @query %>
+  <%= text_field_tag :page, @page %>
+<% end %>
 <% if (@page + 1) <= @total_pages %>
   <%= link_to("Next", movies_path(params: {query: @query, page: @page + 1})) %>
 <% end %>
   <p>Total Pages: <%= @total_pages || 1 %></p>
 
 <% @movies.each do  |movie| %>
-  <p><%= movie['title'] %></p>
+  <p><%= link_to(movie['title'], movie_path(movie['id'])) %></p>
   <p><%= movie['release_date'] %></p>
 <% end %>

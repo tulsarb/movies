@@ -5,11 +5,8 @@ class MovieApi
     @conn = Faraday.new(:url => url) do |faraday|
       faraday.request  :url_encoded             # form-encode POST params
       faraday.response :logger                  # log requests to STDOUT
+      faraday.params[:api_key] = ENV.fetch('MOVIEDB_API_KEY')
       faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
-      faraday.headers = {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
     end
   end
 
@@ -18,7 +15,6 @@ class MovieApi
 
     response = @conn.get do |req|
       req.url 'movie/popular'
-      req.params[:api_key] = api_key
       req.params[:page] = page
     end
 
@@ -32,11 +28,17 @@ class MovieApi
     response = @conn.get do |req|
       req.url 'search/movie'
       req.params[:query] = query
-      req.params[:api_key] = api_key
       req.params[:page] = page
     end
 
     parse_results(response.body)
+  end
+
+  def find(id)
+    response = @conn.get do |req|
+      req.url "movie/#{id}"
+    end
+    JSON.parse(response.body)
   end
 
   private
@@ -49,10 +51,6 @@ class MovieApi
       page: results['page'],
       total_pages: results['total_pages']
     }
-  end
-
-  def api_key
-    @api_key ||= ENV.fetch('MOVIEDB_API_KEY')
   end
 end
 

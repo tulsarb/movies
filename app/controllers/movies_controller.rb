@@ -1,4 +1,5 @@
 class MoviesController < ApplicationController
+
   def index
     results = if params[:query].present?
                 Movie.search(search_params)
@@ -13,7 +14,13 @@ class MoviesController < ApplicationController
   end
 
   def show
+    @movie = Movie.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render 'record_not_found'
+  end
 
+  def record_not_found
+    render 'record_not_found' # Assuming you have a template named 'record_not_found'
   end
 
   private
