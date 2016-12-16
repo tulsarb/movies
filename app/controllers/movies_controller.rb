@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   def index
-    results = if params[:query]
+    results = if params[:query].present?
                 Movie.search(search_params)
               else
                 Movie.popular
