@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
     results = if params[:query].present?
                 Movie.search(search_params)
               else
-                Movie.popular
+                Movie.popular(search_params)
               end
 
     @movies = results[:movies]
