@@ -1,11 +1,15 @@
 class MoviesController < ApplicationController
-  
   def index
-    @movies = if params[:movie]
+    results = if params[:query]
                 Movie.search(search_params)
               else
                 Movie.popular
               end
+
+    @movies = results[:movies]
+    @query = params[:query]
+    @page = results[:page]
+    @total_pages = results[:total_pages]
   end
 
   def show
@@ -15,6 +19,6 @@ class MoviesController < ApplicationController
   private
 
   def search_params
-    params.require(:movie).permit(:query, :page)
+    params.permit(:query, :page)
   end
 end

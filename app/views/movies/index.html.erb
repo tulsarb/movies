@@ -1,7 +1,10 @@
 <%= form_tag movies_path, method: :get do %>
-  <%= text_field_tag 'movie[query]' %>
+  <%= text_field_tag :query, @query %>
   <%= submit_tag :search %>
 <% end %>
+
+Current Page: <%= @page || 1 %><br>
+Total Pages: <%= @total_pages || 1 %><br>
 
 <% @movies.each do  |movie| %>
   <p><%= movie['title'] %></p>

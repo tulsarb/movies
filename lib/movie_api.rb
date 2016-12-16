@@ -22,7 +22,7 @@ class MovieApi
       req.params[:page] = page
     end
 
-    JSON.parse(response.body)
+    parse_results(response.body)
   end
 
   def search(options = {})
@@ -36,10 +36,20 @@ class MovieApi
       req.params[:page] = page
     end
 
-    JSON.parse(response.body)
+    parse_results(response.body)
   end
 
   private
+
+  def parse_results(results)
+    results = JSON.parse(results)
+
+    {
+      movies: results['results'],
+      page: results['page'],
+      total_pages: results['total_pages']
+    }
+  end
 
   def api_key
     @api_key ||= ENV.fetch('MOVIEDB_API_KEY')
