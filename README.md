@@ -1,24 +1,7 @@
-# README
+# Movies App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a quick app for demonstrating consuming a REST API using Ruby on Rails. We are consuming themoviedb.org.
 
-Things you may want to cover:
+Written by Josh Hamilton (@nearbycoder) and Wassim Metallaoui (@wassimk).
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Made for a presentation workshop at a tulsarb.org meetup.
