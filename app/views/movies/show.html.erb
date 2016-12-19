@@ -1,4 +1,12 @@
-
-  <p><%= @movie['title'] %></p>
-  <p><%= @movie['release_date'] %></p>
-
+<div class="container">
+  <div class="row">
+    <%= link_to("< Back To Search", :back, class: "btn btn-primary spacer") %>
+  </div>
+  <div class="row">
+    <img class="full-image" src="<%= poster_link(@movie['backdrop_path']) %>">
+  </div>
+  <div class="row">
+    <h4 class="card-title"><%= @movie['title'] %></h4>
+    <p class="card-text"><%= @movie['overview'] %></p>
+  </div>
+</div>

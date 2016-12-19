@@ -9,7 +9,7 @@ class MoviesController < ApplicationController
 
     @movies = results[:movies]
     @query = params[:query]
-    @page = results[:page]
+    @page = results[:page] ? results[:page] : 1
     @total_pages = results[:total_pages]
   end
 
@@ -26,6 +26,10 @@ class MoviesController < ApplicationController
   private
 
   def search_params
-    params.permit(:query, :page)
+    if params[:page] && params[:page].to_i > 0
+      params.permit(:query, :page)
+    else
+      params.permit(:query)
+    end
   end
 end

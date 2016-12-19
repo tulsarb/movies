@@ -1,20 +1,48 @@
-<%= form_tag movies_path, method: :get do %>
-  <%= text_field_tag :query, @query %>
-  <%= submit_tag :search %>
-<% end %>
-<% if !(@page - 1).zero? %>
-  <%= link_to("Previous", movies_path(params: {query: @query, page: @page - 1})) %>
-<% end %>
-<%= form_tag movies_path, method: :get do %>
-  <%= hidden_field_tag :query, @query %>
-  <%= text_field_tag :page, @page %>
-<% end %>
-<% if (@page + 1) <= @total_pages %>
-  <%= link_to("Next", movies_path(params: {query: @query, page: @page + 1})) %>
-<% end %>
-  <p>Total Pages: <%= @total_pages || 1 %></p>
-
-<% @movies.each do  |movie| %>
-  <p><%= link_to(movie['title'], movie_path(movie['id'])) %></p>
-  <p><%= movie['release_date'] %></p>
-<% end %>
+<nav class="navbar navbar-light bg-faded">
+  <a class="navbar-brand" href="#">Movie App</a>
+  <%= form_tag movies_path, method: :get, class: "form-inline float-xs-right"  do %>
+    <%= text_field_tag :query, @query, class: "form-control" %>
+    <%= submit_tag :search, class: "btn btn-outline-success" %>
+  <% end %>
+</nav>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4 offset-sm-4 text-center">
+      <span class="inline">
+        <% if !(@page - 1).zero? %>
+          <%= link_to("Previous", movies_path(params: {query: @query, page: @page - 1})) %>
+        <% else %>
+          Previous
+        <% end %>
+      </span>
+      <span class="inline">
+        <%= form_tag movies_path, method: :get do %>
+          <%= hidden_field_tag :query, @query %>
+          <%= text_field_tag :page, @page %>
+        <% end %>
+      </span>
+      <span class="inline">
+        <% if (@page + 1) <= @total_pages %>
+          <%= link_to("Next", movies_path(params: {query: @query, page: @page + 1})) %>
+        <% else %>
+          Next
+        <% end %>
+      </span>
+      <p class="text-center">Total Pages: <%= @total_pages || 1 %></p>
+    </div>
+  </div>
+  <div class="row">
+    <% @movies.each do  |movie| %>
+      <div class="col-sm-4">
+        <div class="card">
+          <img class="card-img-top" src="<%= poster_link(movie['poster_path']) %>" alt="Card image cap">
+          <div class="card-block">
+            <h4 class="card-title"><%= link_to(movie['title'], movie_path(movie['id'])) %></h4>
+            <p class="card-text"><%= movie['overview'] %></p>
+            <%= link_to('More Details', movie_path(movie['id']), class: "btn btn-primary") %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

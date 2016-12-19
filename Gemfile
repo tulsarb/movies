@@ -30,6 +30,9 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Add bootstrap
+gem 'bootstrap', '~> 4.0.0.alpha3'
+
 gem 'faraday'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'pry-rails', :groups => [:development, :test]
