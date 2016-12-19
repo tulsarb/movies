@@ -1,5 +1,4 @@
 class MoviesController < ApplicationController
-
   def index
     results = if params[:query].present?
                 Movie.search(search_params)
@@ -26,7 +25,7 @@ class MoviesController < ApplicationController
   private
 
   def search_params
-    if params[:page] && params[:page].to_i > 0
+    if params[:page] && params[:page].to_i.positive?
       params.permit(:query, :page)
     else
       params.permit(:query)

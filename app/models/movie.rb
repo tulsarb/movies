@@ -11,10 +11,8 @@ class Movie
   def self.find(id)
     movie = MovieApi.new.find(id)
 
-    if movie['status_code'] != 34
-      movie
-    else
-      raise ActiveRecord::RecordNotFound
-    end
+    raise ActiveRecord::RecordNotFound unless movie['status_code'] != 34
+
+    movie
   end
 end

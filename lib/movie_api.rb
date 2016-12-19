@@ -2,11 +2,11 @@ class MovieApi
   def initialize
     url = 'https://api.themoviedb.org/3/'
 
-    @conn = Faraday.new(:url => url) do |faraday|
+    @conn = Faraday.new(url: url) do |faraday|
       faraday.request  :url_encoded             # form-encode POST params
       faraday.response :logger                  # log requests to STDOUT
       faraday.params[:api_key] = ENV.fetch('MOVIEDB_API_KEY')
-      faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
+      faraday.adapter Faraday.default_adapter # make requests with Net::HTTP
     end
   end
 
@@ -53,4 +53,3 @@ class MovieApi
     }
   end
 end
-
