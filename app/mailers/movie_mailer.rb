@@ -1,7 +1,7 @@
 class MovieMailer < ApplicationMailer
-  def favorite_email(email, url)
-    @email = email
-    @url  = url
-    mail(to: email, subject: 'Favorite Movie')
+  def favorite_email(user, movie)
+    @user = user
+    @movie  = movie
+    mail to: @user.email, subject: "#{@movie['title']} Favorited"
   end
 end

@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
     <%= link_to("< Back To Search", :back, class: "btn btn-primary spacer") %>
+    <a href="/movies/<%= @movie['id'] %>/favorite" class="btn btn-primary">Favorite</a>
   </div>
   <div class="row">
     <img class="full-image" src="<%= poster_link(@movie['backdrop_path']) %>">

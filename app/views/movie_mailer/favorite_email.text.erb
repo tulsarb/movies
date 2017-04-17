@@ -1,5 +1,8 @@
-Hi <%= @email %>
-Your favorite movie has updated!
+Hi <%= @user.first_name %>
+
+Your favorite movie, <%= @movie['title'] %> has updated!
+
+It has an average rating of <%= @movie['vote_average'] %>
 
 Check it out:
-<%= @url %>
+<%= @movie['homepage'] %>

@@ -1,4 +1,6 @@
 class MoviesController < ApplicationController
+  before_action :authenticate_user!, only: [:favorite]
+
   def index
     results = if params[:query].present?
                 Movie.search(search_params)
@@ -16,6 +18,14 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     render 'record_not_found'
+  end
+
+  def favorite
+    movie = Movie.find(params[:id])
+
+    MovieMailer.favorite_email(current_user, movie).deliver_later
+
+    redirect_to movie_path(movie['id']), notice: 'Movie favorited!'
   end
 
   def record_not_found
