@@ -1,8 +1,8 @@
-Hi <%= @user.first_name %>
+Hi <%= @user.first_name %>,
 
-Your favorite movie, <%= @movie['title'] %> has updated!
+You have favorited movie <%= @movie['title'] %>!
 
-It has an average rating of <%= @movie['vote_average'] %>
+It has an average rating of <%= @movie['vote_average'] %> / 10.
 
 Check it out:
 <%= @movie['homepage'] %>
