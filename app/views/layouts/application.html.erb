@@ -8,8 +8,14 @@
   </head>
 
   <body>
-    <%= notice %>
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <%= render 'layouts/messages' %>
 
-    <%= yield %>
+          <%= yield %>
+        </div>
+      </div>
+  </main>
   </body>
 </html>
