@@ -29,9 +29,7 @@ jobs:
       # Run Bundler Security Audit
       - run:
           name: Bundler Security Audit
-          command: |
-            bundle exec bundle-audit update
-            bundle exec bundle-audit check
+          command: bundle exec bundle-audit check --update
 
       # Deployment to Dokku
       - run:
