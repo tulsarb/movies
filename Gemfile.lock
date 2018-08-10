@@ -48,6 +48,9 @@ GEM
       popper_js (>= 1.12.9, < 2)
       sass (>= 3.5.2)
     builder (3.2.3)
+    bundler-audit (0.6.0)
+      bundler (~> 1.2)
+      thor (~> 0.18)
     byebug (10.0.2)
     coderay (1.1.2)
     coffee-rails (4.2.2)
@@ -203,6 +206,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap (~> 4.0.0.alpha3)
+  bundler-audit
   byebug
   coffee-rails (~> 4.2)
   devise

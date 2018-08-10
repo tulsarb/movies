@@ -1,0 +1,42 @@
+version: 2
+
+jobs:
+  build:
+    working_directory: ~/movies
+    docker:
+      - image: circleci/ruby:2.5.1-node
+
+    steps:
+      - checkout
+
+      # Restore bundle cache
+      - type: cache-restore
+        key: movies-{{ checksum "Gemfile.lock" }}
+
+      # Bundle install dependencies
+      - run:
+          name: Install Dependencies
+          command: |
+            gem install bundler
+            bundle install --deployment
+
+      # Store bundle cache
+      - type: cache-save
+        key: movies-{{ checksum "Gemfile.lock" }}
+        paths:
+          - vendor/bundle
+
+      # Run Bundler Security Audit
+      - run:
+          name: Bundler Security Audit
+          command: |
+            bundle exec bundle-audit update
+            bundle exec bundle-audit check
+
+      # Deployment to Dokku
+      - run:
+          name: Deploy to Dokku
+          command: |
+            ssh-keyscan -H apps.tulsarb.org >> ~/.ssh/known_hosts
+            git remote add production dokku@apps.tulsarb.org:movies
+            git push production master --force

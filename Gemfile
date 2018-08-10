@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ruby '2.3.3'
 
 gem 'bootstrap', '~> 4.0.0.alpha3'
+gem 'bundler-audit'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'faraday'
