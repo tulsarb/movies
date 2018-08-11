@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Types
   class MoviePaginationType < Types::BaseObject
     field :movies, [MovieType], null: false

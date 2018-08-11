@@ -3,7 +3,7 @@
 module Types
   class MutationType < Types::BaseObject
     field :favorite_movie, MovieType, null: true do
-      description 'Send a email to the current user about the movie they favorited'
+      description 'Send a email to the current user about the movie'
       argument :id, ID, required: true
     end
 
