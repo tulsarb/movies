@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require 'rails/all'
@@ -14,5 +16,12 @@ module Movies
 
     # Background processing!
     config.active_job.queue_adapter = :sidekiq
+
+    config.middleware.insert_before 0, 'Rack::Cors' do
+      allow do
+        origins '*'
+        resource '*', headers: :any, methods: %i[get post options]
+      end
+    end
   end
 end
