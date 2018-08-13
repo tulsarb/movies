@@ -32,9 +32,11 @@ jobs:
           command: bundle exec bundle-audit check --update
 
       # Deployment to Dokku
-      - run:
+      - deploy:
           name: Deploy to Dokku
           command: |
-            ssh-keyscan -H apps.tulsarb.org >> ~/.ssh/known_hosts
-            git remote add production dokku@apps.tulsarb.org:tulsarb-movies
-            git push production master --force
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              ssh-keyscan -H apps.tulsarb.org >> ~/.ssh/known_hosts
+              git remote add production dokku@apps.tulsarb.org:tulsarb-movies
+              git push production master --force
+            fi
