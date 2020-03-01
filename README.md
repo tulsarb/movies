@@ -4,7 +4,7 @@
 
 This is a quick app for demonstrating consuming a REST API using Ruby on Rails. We are consuming [themoviedb.org](https://www.themoviedb.org). 
 
-You can see a demo versin of this app at [movies.apps.tulsarb.org](https://movies.apps.tulsarb.org).
+You can see a demo version of this app at [movies.apps.tulsarb.org](http://movies.apps.tulsarb.org). Heroku free tier, it may need to warm up.
 
 Written by Josh Hamilton ([@nearbycoder](https://github.com/nearbycoder)) and Wassim Metallaoui ([@wassimk](https://github.com/wassimk)).
 
