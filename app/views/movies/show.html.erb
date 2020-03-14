@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
-    <%= link_to("< Back To Search", :back, class: "btn btn-primary spacer") %>
+    <%= link_to("< Back To Search", root_path, class: "btn btn-primary") %>
+    &nbsp;
     <a href="/movies/<%= @movie['id'] %>/favorite" class="btn btn-primary">Favorite</a>
   </div>
   <div class="row">
