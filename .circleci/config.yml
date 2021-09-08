@@ -4,7 +4,7 @@ jobs:
   build:
     working_directory: ~/movies
     docker:
-      - image: circleci/ruby:2.5.1-node
+      - image: circleci/ruby:2.5.7-node
 
     steps:
       - checkout

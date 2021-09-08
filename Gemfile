@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.5.1'
+ruby '2.5.7'
 
 gem 'bootstrap', '~> 4.3.1'
 gem 'bundler-audit'
